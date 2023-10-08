@@ -3,13 +3,14 @@ import { DonationsService } from './donations.service';
 import { CreateDonationInput } from './dto/create-donation.input';
 import { Donation } from './entities/donation.entity';
 import { OrderByParams } from 'src/graphql';
+import { DonationCreateInput } from 'src/@generated/prisma-nestjs-graphql/donation/donation-create.input';
 
 @Resolver(Donation)
 export class DonationsResolver {
   constructor(private readonly donationsService: DonationsService) {}
 
   @Mutation(() => Donation)
-  createDonation(@Args('createDonationInput') createDonationInput: CreateDonationInput) {
+  createDonation(@Args('createDonationInput') createDonationInput: DonationCreateInput) {
     return this.donationsService.create(createDonationInput);
   }
 
