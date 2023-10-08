@@ -25,6 +25,7 @@ export class Donation {
     mobile?: Nullable<string>;
     team?: Nullable<string>;
     mesaage?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
 }
 
 export abstract class IQuery {
@@ -34,7 +35,8 @@ export abstract class IQuery {
 }
 
 export abstract class IMutation {
-    abstract createDonation(createDonationInput: CreateDonationInput): Donation | Promise<Donation>;
+    abstract createDonation(createDonationInput?: Nullable<CreateDonationInput>): Nullable<Donation> | Promise<Nullable<Donation>>;
 }
 
+export type DateTime = any;
 type Nullable<T> = T | null;

@@ -1,4 +1,4 @@
-
+scalar DateTime
 
 
 type Donation {
@@ -9,6 +9,7 @@ type Donation {
   mobile: String
   team: String
   mesaage: String
+  createdAt: DateTime
 }
 
 input CreateDonationInput {
@@ -27,5 +28,5 @@ type Query {
 }
 
 type Mutation {
-  createDonation(createDonationInput: CreateDonationInput!): Donation!
+  createDonation(createDonationInput: CreateDonationInput): Donation
 }

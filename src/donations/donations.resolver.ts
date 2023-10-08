@@ -1,14 +1,14 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { DonationsService } from './donations.service';
 import { CreateDonationInput } from './dto/create-donation.input';
-import { UpdateDonationInput } from './dto/update-donation.input';
+import { Donation } from './entities/donation.entity';
 
-@Resolver('Donation')
+@Resolver(Donation)
 export class DonationsResolver {
   constructor(private readonly donationsService: DonationsService) {}
 
-  @Mutation('createDonation')
-  create(@Args('createDonationInput') createDonationInput: CreateDonationInput) {
+  @Mutation(() => Donation)
+  createDonation(@Args('createDonationInput') createDonationInput: CreateDonationInput) {
     return this.donationsService.create(createDonationInput);
   }
 
