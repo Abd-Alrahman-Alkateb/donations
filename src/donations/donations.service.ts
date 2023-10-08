@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateDonationInput } from './dto/create-donation.input';
 import { PrismaService } from '../prisma/prisma.service';
+import { OrderByParams } from 'src/graphql';
 
 @Injectable()
 export class DonationsService {
@@ -13,8 +14,11 @@ export class DonationsService {
     return donation;
   }
 
-  findAll() {
-    return this.prisma.donation.findMany();
+  findAll(orderBy?: OrderByParams) {
+    const {field = 'createdAt' , direction = 'desc'} = orderBy || {};
+    return this.prisma.donation.findMany({
+      orderBy: {[field] : direction},
+    });
   }
 
   findOne(id: number) {

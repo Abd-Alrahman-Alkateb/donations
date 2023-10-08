@@ -2,6 +2,7 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { DonationsService } from './donations.service';
 import { CreateDonationInput } from './dto/create-donation.input';
 import { Donation } from './entities/donation.entity';
+import { OrderByParams } from 'src/graphql';
 
 @Resolver(Donation)
 export class DonationsResolver {
@@ -13,8 +14,11 @@ export class DonationsResolver {
   }
 
   @Query('donations')
-  findAll() {
-    return this.donationsService.findAll();
+  findAll(
+    @Args('orderBy')
+    orderBy?:OrderByParams,
+  ) {
+    return this.donationsService.findAll(orderBy);
   }
 
   @Query('donation')
