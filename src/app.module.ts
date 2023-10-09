@@ -17,6 +17,10 @@ import { DateTimeScalar } from './date.scalar';
       resolvers: {
         DateTime: new DateTimeScalar() // Add the DateTimeScalar to resolvers
       },
+      subscriptions: {
+        'graphql-ws':true,
+        'subscriptions-transport-ws':true,
+      }
     }),
     DonationsModule,
   ],

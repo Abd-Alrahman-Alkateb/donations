@@ -29,4 +29,13 @@ export class DonationsService {
     })
     return donation;
   }
+
+  async getTotal() {
+    const response = await this.prisma.donation.aggregate({
+      _sum: {
+        count:true,
+      },
+    });
+    return response._sum.count;
+  }
 }
